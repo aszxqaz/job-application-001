@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import PieChart from "../components/PieChart/PieChart.vue";
+import PieChartEditor from "../components/PieChart/PieChartEditor.vue";
 </script>
 
 <template>
   <div class="pie-chart-page">
-    <PieChart />
+    <PieChartEditor />
   </div>
 </template>
 

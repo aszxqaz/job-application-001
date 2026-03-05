@@ -69,8 +69,8 @@ const chartOptions: ChartOptions<"pie"> = {
 </script>
 
 <template>
-  <div class="row">
-    <div class="panel col">
+  <div class="pie-chart-editor">
+    <div class="editor">
       <PieChartInput
         class="pie-chart-input"
         v-for="pie in state.pies"
@@ -80,7 +80,7 @@ const chartOptions: ChartOptions<"pie"> = {
         :percent="`${((pie.value / total) * 100).toFixed(0)}%`"
         @remove="removePie(pie)"
       />
-      <button class="btn" @click="addPie">Добавить сектор</button>
+      <button class="button" @click="addPie">Добавить сектор</button>
     </div>
     <div class="chart">
       <Pie :data="chartData" :options="chartOptions" />
@@ -89,9 +89,28 @@ const chartOptions: ChartOptions<"pie"> = {
 </template>
 
 <style scoped>
+.pie-chart-editor {
+  display: grid;
+  grid-template-columns: 54fr 50fr;
+  align-items: flex-start;
+  column-gap: 90px;
+  row-gap: 32px;
+
+  @media (max-width: 1280px) {
+    grid-template-columns: unset;
+  }
+}
+
+.editor {
+  width: 100%;
+  max-width: 540px;
+  margin-inline: auto;
+}
+
 .chart {
   pointer-events: none;
   aspect-ratio: 1;
+  width: 100%;
   max-width: 500px;
   margin-inline: auto;
 }
@@ -100,28 +119,7 @@ const chartOptions: ChartOptions<"pie"> = {
   margin-top: 5px;
 }
 
-.panel {
-  width: 100%;
-  max-width: 540px;
-  margin-inline: auto;
-}
-
-.row {
-  display: flex;
-  align-items: flex-start;
-  column-gap: 90px;
-  row-gap: 32px;
-
-  @media (max-width: 1280px) {
-    flex-direction: column;
-  }
-
-  > * {
-    flex: 1;
-  }
-}
-
-.btn {
+.button {
   margin-top: 30px;
   width: 100%;
   padding-block: 20px;
